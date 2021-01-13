@@ -1,0 +1,30 @@
+name: Update Mozilla Included CA Certificate List
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  update:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Go
+      uses: actions/setup-go@v2
+
+    - name: Update Mozilla Included CA Certificate List
+      run: go generate .
+
+    - name: Commit changes
+      uses: EndBug/add-and-commit@v6
+      with:
+        author_name: Lucas Bremgartner
+        author_email: lucas@bremis.ch
+        message: 'Auto Update Mozilla Included CA Certificate List'
+        add: 'data.go'
