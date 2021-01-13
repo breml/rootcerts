@@ -6,6 +6,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -39,6 +40,8 @@ func main() {
 	if err != nil {
 		fail("error reading http body: %v", err)
 	}
+
+	data = bytes.ReplaceAll(data, []byte("\r"), []byte{})
 
 	of, err := os.Create("data.go")
 	if err != nil {
