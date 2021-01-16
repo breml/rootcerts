@@ -2,16 +2,16 @@
 
 Package rootcerts provides an embedded copy of the [Mozilla Included CA Certificate List],
 more specifically the [PEM of Root Certificates in Mozilla's Root Store with the Websites (TLS/SSL) Trust Bit Enabled].
-If this package is imported anywhere in the program, then if the [`crypto/x509`]
+If this package is imported anywhere in the program and the [`crypto/x509`]
 package cannot find the system certificate pool, it will use this embedded information.
 
-Additionally, the usage of this embedded information can be forced by setting the the environment
-variable `GO_ROOTCERTS_ENABLE=1` while running a program, which includes this package.
+Additionally, the usage of this embedded information can be forced by setting the environment
+variable `GO_ROOTCERTS_ENABLE=1` while running a program which includes this package.
 
 Importing this package will increase the size of a program by about 250 KB.
 
 This package should normally be imported by a program's main package, not by a library. Libraries
-normally shouldn't decide whether to include the "Mozilla Included CA Certificate List" in a program.
+generally shouldn't decide whether to include the "Mozilla Included CA Certificate List" in a program.
 
 ```Go
 import (
@@ -21,14 +21,14 @@ import (
 
 ## Trustworthiness of the Mozilla Included CA Certificate List
 
-Most operation systems as well as web browsers do include a list of certificate authorities and the respective
+Most operating systems as well as web browsers include a list of certificate authorities and the corrosponding
 root certificates that are trusted by default. Some major software vendors operate their own [root programs] and
 so does the Mozilla Foundation for their well known products like the [Firefox] web browser or [Thunderbird] email
 client.
 
-In contrast to most of the other software vendors, Mozilla does maintain its Included CA Certificate List publicly and
-distribute it under an open source license. This is also the reason, why most of the Linux distributions as well as
-other free unix derivates use this list of CA Certificates as part of their distribution, here some examples:
+In contrast to most of the other software vendors, Mozilla maintain its Included CA Certificate List publicly and
+distributes it under an open source license. This is also the reason why most of the Linux distributions, as well as
+other free unix derivates, use this list of CA Certificates as part of their distribution. Here some examples:
 
 * Debian (and its derivates): [ca-certificates](https://packages.debian.org/en/sid/ca-certificates)
 * Red Hat / Fedora / CentOS: [ca-certificates](https://src.fedoraproject.org/rpms/ca-certificates) / [ca-certificates](https://centos.pkgs.org/7/centos-x86_64/ca-certificates-2020.2.41-70.0.el7_8.noarch.rpm.html)
@@ -36,22 +36,22 @@ other free unix derivates use this list of CA Certificates as part of their dist
 * FreeBSD: [ca_root_nss](https://www.freshports.org/security/ca_root_nss/)
 * NetBSD: [ca-certificates](https://pkgsrc.se/security/ca-certificates)
 
-Additionally Mozilla is operating the [Common CA Database] (used/supported by other major software vendors). The Common
+Additionally, Mozilla operates the [Common CA Database] (used/supported by other major software vendors). The Common
 CA Database describes it self as:
 
 > The Common CA Database (CCADB) is a repository of information about externally operated Certificate Authorities (CAs)
 whose root and intermediate certificates are included within the products and services of CCADB root store members.
 
-To summarize: it is safe to say, that the Mozilla Included CA Certificate List is well established and widely used.
-In fact, if your Go program is run on Linux or an other free Unix derivate, chances are high, that the root
-certificates used by your program is the Mozilla Included CA Certificate List already today.
+To summarize: It is safe to say that the Mozilla Included CA Certificate List is well established and widely used.
+In fact, if your Go program is run on Linux or an other free Unix derivate, chances are high that the root
+certificates used by your program are already provided by the Mozilla Included CA Certificate List.
 
 ## Motivation
 
-For me, there are mainly two use cases for this package:
+For me there are mainly two use cases for this package:
 
 1. Docker containers from scratch
-2. Poorly maintained operation systems, e.g. in hardware appliances
+2. Poorly maintained operating systems, e.g. in hardware appliances
 
 ### Docker Containers from Scratch
 
@@ -66,18 +66,18 @@ The second case can now be mitigated by this package.
 
 ### Poorly maintained appliances
 
-By the term appliance I mainly have hardware appliances like small NAS (network attached storage) systems from
-vendors like QNAP or Synology in mind. These systems are in most cases based on Linux and do offer SSH access.
-This allows the user to run custom tools on these systems. Unfortunately, whenever the vendor of these systems decide
-to stop shipping firmware updates, also the system certificates are no longer updated and it often is difficult or even
+I'm mainly thinking of hardware appliances like small NAS (network attached storage) systems from
+vendors like QNAP or Synology when I use the word appliance. These systems are based on Linux in most cases and offer SSH access.
+This allows the user to run custom tools on these systems. Unfortunately, whenever the vendor of these systems decides
+to stop shipping firmware updates, the system certificates are also no longer updated and it is often difficult or even
 impossible to update the system certificates manually.
 
-Therefore it is a great advantage, if a program like a tool built with Go does embed the root certificates.
+Therefore, it is a great advantage if a program like a tool built with Go embeds its own root certificates.
 
-The following two properties of Go do make it a really good candidate for building programs for hardware appliances:
+The following two properties of Go make it a really good candidate for building programs for hardware appliances:
 
 1. Go programs are statically linked and can be distributed by simply copying the executable.
-2. Go does provide greate support for cross compiling for multiple CPU architectures.
+2. Go provides greate support for cross compiling for multiple CPU architectures.
 
 ## Words of Caution ‒ or why you should not use this package
 
@@ -85,11 +85,11 @@ The root certificates are the top-most certificates in the trust chain and used 
 certificates signed by them either directly (intermediate certificates) or indirectly (through intermediate
 certificates). As a user of this package, you have the obligation to double check the source as well as the integrity
 of the root certificates provided in this package. This is absolutely crucial and should not be taken lightly. All
-certificates, that are validated by programs that built upon this package, e.g. by using TLS for communication, rely
+certificates that are validated by programs built upon this package, e.g. by using TLS for communication, rely
 on the trustworthiness of these root certificates.
 
-Beside of the trust, put into the certificates included in this package, there is an other topic to keep in mind and
-this is how the certificates get updated.
+Beside the issue of the trust you put into the certificates included in this package, there is another topic to keep in mind and
+that is how the certificates get updated.
 
 In the "normal" case, where a Go program is run on a recent operating system, the certificates get updated whenever
 the operating system is updated (and a new version of the CA certificates is available).\
@@ -98,8 +98,8 @@ With the use of this package, this stays true if both of the following condition
 * the [`crypto/x509`] package is able to find the CA certificates on the system.
 * the environment variable `GO_ROOTCERTS_ENABLE=1` is not set.
 
-Additionally, it is worth mentioning, that the [`crypto/x509`] package by default does not provide the necessary
-mechanics to detect and reload the CA certificates, if they change. By default, a restart of the Go program is
+Additionally, it is worth mentioning that the [`crypto/x509`] package by default does not provide the necessary
+mechanics to detect and reload the CA certificates if they change. By default, a restart of the Go program is
 necessary to leverage the updated certificates.
 
 If the above conditions are not met, the CA certificates from this package are used. These certificates are only
@@ -114,7 +114,7 @@ To link back to the motivation for this package again, the main use case for thi
 
 1. the Go program is frequently updated (automated via CI) and distributed in a minimalistic form like a Docker
 container from scratch
-2. the Go program is run in a out of date environment like a poorly maintained or no longer updateable system
+2. the Go program is run in an out of date environment like a poorly maintained or no longer updateable system
 
 In all other cases, it is recommended to stick to the CA certificates maintained with the operating system.
 
