@@ -1,5 +1,8 @@
 # rootcerts
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/breml/rootcerts.svg)](https://pkg.go.dev/github.com/breml/rootcerts)
+[![Github Action Workflow - Update Mozilla Included CA Certificate List](https://github.com/breml/rootcerts/workflows/Update%20Mozilla%20Included%20CA%20Certificate%20List/badge.svg)](https://github.com/breml/rootcerts/actions?query=workflow%3A%22Update+Mozilla+Included+CA+Certificate+List%22)
+
 Package rootcerts provides an embedded copy of the [Mozilla Included CA Certificate List],
 more specifically the [PEM of Root Certificates in Mozilla's Root Store with the Websites (TLS/SSL) Trust Bit Enabled].
 If this package is imported anywhere in the program and the [`crypto/x509`] package cannot find the system certificate
