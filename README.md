@@ -79,13 +79,16 @@ client.
 
 In contrast to most of the other software vendors, Mozilla maintains its Included CA Certificate List publicly and
 distributes it under an open source license. This is also the reason why most of the Linux distributions, as well as
-other free unix derivates, use this list of CA Certificates as part of their distribution. Here some examples:
+other free unix derivates and wide spread tools, use this list of CA Certificates as part of their distribution.
+
+Here some examples:
 
 * Debian (and its derivates): [ca-certificates](https://packages.debian.org/en/sid/ca-certificates)
 * Red Hat / Fedora / CentOS: [ca-certificates](https://src.fedoraproject.org/rpms/ca-certificates) / [ca-certificates](https://centos.pkgs.org/7/centos-x86_64/ca-certificates-2020.2.41-70.0.el7_8.noarch.rpm.html)
 * Alpine Linux: [ca-certificates](https://pkgs.alpinelinux.org/package/v3.12/main/x86/ca-certificates)
 * FreeBSD: [ca_root_nss](https://www.freshports.org/security/ca_root_nss/)
 * NetBSD: [ca-certificates](https://pkgsrc.se/security/ca-certificates)
+* curl: [cacert.pem](https://curl.se/docs/caextract.html)
 
 Additionally, Mozilla operates the [Common CA Database] (used/supported by other major software vendors). The Common
 CA Database describes it self as:
