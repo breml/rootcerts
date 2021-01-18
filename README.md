@@ -19,7 +19,7 @@ hardware appliances)
 
 Please consider the following advice if using this pacakge:
 
-* Carefully read and understand the section [Words of Caution ‒ or why you should not use this package](#words-of-caution-‒-or-why-you-should-not-use-this-package)
+* Carefully read and understand the section [Words of Caution ‒ or why you should not use this package](#words-of-caution--or-why-you-should-not-use-this-package)
   * Without update of your Go Module depencies, rebuilding and redeploying of your programm, there is no update to the
   embedded root certificates.
 * Do not include this package in any library package. This package should only be included in package main of programs.
