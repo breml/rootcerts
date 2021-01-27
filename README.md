@@ -25,6 +25,8 @@ Please consider the following advice if using this pacakge:
   embedded root certificates.
 * Do not include this package in any library package. This package should only be included in package main of programs.
 
+The functionality of this package is proposed for inclusion into the Go standard library in [#43958](https://github.com/golang/go/issues/43958).
+
 ## Usage
 
 To use this package, simply import in your program.
