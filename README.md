@@ -18,7 +18,7 @@ hardware appliances)
 
 **In all other cases, it is recommended to stick to the CA certificates maintained with the operating system.**
 
-Please consider the following advice if using this pacakge:
+Please consider the following advice if using this package:
 
 * Carefully read and understand the section [Words of Caution ‒ or why you should not use this package](#words-of-caution--or-why-you-should-not-use-this-package)
   * Without update of your Go Module depencies, rebuilding and redeploying of your programm, there is no update to the
