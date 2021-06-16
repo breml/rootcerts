@@ -37,7 +37,7 @@ func init() {
 	// Ensure x509.SystemCertPool is executed once
 	x509.SystemCertPool() // nolint: errcheck
 
-	if systemRoots != nil && os.Getenv(forceEnableEnvVar) != "1" {
+	if systemRoots != nil && len(systemRoots.Subjects()) > 0 && os.Getenv(forceEnableEnvVar) != "1" {
 		return
 	}
 
