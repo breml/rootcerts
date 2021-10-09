@@ -22,9 +22,16 @@ jobs:
       run: go generate .
 
     - name: Commit changes
+      id: commit_changes
       uses: EndBug/add-and-commit@v6
       with:
         author_name: Lucas Bremgartner
         author_email: lucas@bremis.ch
         message: 'Auto Update Mozilla Included CA Certificate List'
         add: 'data.go'
+
+    - name: Bump version and push tag
+      if: ${{ steps.commit_changes.outputs.committed && steps.commit_changes.outputs.pushed }}
+      uses: mathieudutour/github-tag-action@v5.6
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
