@@ -142,6 +142,10 @@ updated if all of the following conditions are met:
 
 This package is heavily inspired by the [`time/tzdata`] package from the Go standard library.
 
+## Similar projects
+
+* [gwatts/rootcerts - Root CA Certificates for Go (`go generate`-able)](https://github.com/gwatts/rootcerts)
+
 ## License
 
 Software: [BSD 2-Clause “Simplified” License](LICENSE)\
