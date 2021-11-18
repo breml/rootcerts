@@ -6,7 +6,7 @@
 // Use of these certificates is governed by Mozilla Public License 2.0
 // that can be found in the LICENSE.certificates file.
 
-package rootcerts
+package embedded
 
 const data = `-----BEGIN CERTIFICATE-----
 MIIFgjCCA2qgAwIBAgILWku9WvtPilv6ZeUwDQYJKoZIhvcNAQELBQAwTTELMAkG
