@@ -28,7 +28,7 @@ jobs:
         author_name: Lucas Bremgartner
         author_email: lucas@bremis.ch
         message: 'Auto Update Mozilla Included CA Certificate List'
-        add: 'data.go'
+        add: 'embedded/data.go'
 
     - name: Bump version and push tag
       if: ${{ steps.commit_changes.outputs.committed == 'true' && steps.commit_changes.outputs.pushed == 'true' }}
