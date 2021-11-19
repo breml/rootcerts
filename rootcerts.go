@@ -26,6 +26,8 @@ import (
 	"crypto/x509"
 	"os"
 	_ "unsafe" // for go:linkname
+
+	"github.com/breml/rootcerts/embedded"
 )
 
 const forceEnableEnvVar = "GO_ROOTCERTS_ENABLE"
@@ -42,7 +44,6 @@ func init() {
 	}
 
 	roots := x509.NewCertPool()
-	d := data
-	roots.AppendCertsFromPEM([]byte(d))
+	roots.AppendCertsFromPEM([]byte(embedded.MozillaCACertificatesPEM()))
 	systemRoots = roots
 }
