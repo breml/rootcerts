@@ -32,7 +32,7 @@ jobs:
 
     - name: Bump version and push tag
       if: ${{ steps.commit_changes.outputs.committed == 'true' && steps.commit_changes.outputs.pushed == 'true' }}
-      uses: mathieudutour/github-tag-action@v5.6
+      uses: mathieudutour/github-tag-action@v6.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         commit_sha: ${{ steps.commit_changes.outputs.commit_long_sha }}
