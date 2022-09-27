@@ -23,7 +23,7 @@ jobs:
 
     - name: Commit changes
       id: commit_changes
-      uses: EndBug/add-and-commit@v6
+      uses: EndBug/add-and-commit@v9
       with:
         author_name: Lucas Bremgartner
         author_email: lucas@bremis.ch
