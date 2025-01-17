@@ -10,13 +10,13 @@ on:
 
 jobs:
   update:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Setup Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v5
 
     - name: Update Mozilla Included CA Certificate List
       run: go generate .
@@ -32,7 +32,7 @@ jobs:
 
     - name: Bump version and push tag
       if: ${{ steps.commit_changes.outputs.committed == 'true' && steps.commit_changes.outputs.pushed == 'true' }}
-      uses: mathieudutour/github-tag-action@v6.0
+      uses: mathieudutour/github-tag-action@v6.2
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         commit_sha: ${{ steps.commit_changes.outputs.commit_long_sha }}
