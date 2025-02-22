@@ -21,6 +21,9 @@ jobs:
     - name: Update Mozilla Included CA Certificate List
       run: go generate .
 
+    - name: Run checks of Mozilla Included CA Certificate List
+      run: go test -v ./...
+
     - name: Commit changes
       id: commit_changes
       uses: EndBug/add-and-commit@v9
