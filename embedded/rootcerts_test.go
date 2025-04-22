@@ -110,8 +110,8 @@ func checkRootCertsPEM(t *testing.T, pemCerts []byte, whenFail time.Time, whenWa
 }
 
 func TestCerts(t *testing.T) {
-	// Check that certificates will still be valid in 1 month, warn if invalid in 3 months
-	checkRootCertsPEM(t, []byte(embedded.MozillaCACertificatesPEM()), time.Now().AddDate(0, 1, 0), time.Now().AddDate(0, 3, 0))
+	// Check that certificates will still be valid in 7 days, warn if invalid in 3 months
+	checkRootCertsPEM(t, []byte(embedded.MozillaCACertificatesPEM()), time.Now().AddDate(0, 0, 7), time.Now().AddDate(0, 3, 0))
 
 	// Should fail
 	// checkRootCertsPEM(t, []byte(embedded.MozillaCACertificatesPEM()), time.Now().AddDate(20, 0, 0), time.Now().AddDate(30, 0, 0))
