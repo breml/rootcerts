@@ -41,6 +41,10 @@ func checkRootCertsPEM(t *testing.T, pemCerts []byte, whenFail time.Time, whenWa
 		return false
 	}
 
+	if len(certs) == 0 {
+		t.Error("❌ No certificates found")
+	}
+
 	roots := x509.NewCertPool()
 	for _, cert := range certs {
 		roots.AddCert(cert)
